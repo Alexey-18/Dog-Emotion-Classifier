@@ -1,8 +1,0 @@
-{
-    "root": {
-      "angry": 0,
-      "sad": 1,
-      "happy": 2,
-      "relaxed": 3
-    }
-  }
