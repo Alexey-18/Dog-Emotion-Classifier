@@ -1,0 +1,82 @@
+<!-- DogEmotion.ai - frontend interface -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DogEmotion.ai - Emotion Classifier</title>
+  <link rel="stylesheet" href="../static/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🐶 DogEmotion.ai</h1>
+    <p>Определите эмоции собаки по фотографии или с камеры в реальном времени</p>
+
+    <div class="upload-block">
+      <h2>Загрузить изображение</h2>
+      <input type="file" id="uploadInput" accept="image/*" />
+      <button onclick="uploadImage()">Распознать</button>
+      <div id="uploadResult"></div>
+    </div>
+
+    <hr />
+
+    <div class="camera-block">
+      <h2>Реальное время 📹</h2>
+      <video id="video" autoplay muted playsinline></video>
+      <button onclick="captureFrame()">Распознать кадр</button>
+      <canvas id="canvas" style="display:none;"></canvas>
+      <div id="cameraResult"></div>
+    </div>
+  </div>
+
+  <script>
+    const video = document.getElementById("video");
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    // Запуск камеры
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then((stream) => {
+        video.srcObject = stream;
+      })
+      .catch((err) => {
+        console.error("Ошибка доступа к камере:", err);
+      });
+
+    function captureFrame() {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      ctx.drawImage(video, 0, 0);
+      canvas.toBlob((blob) => {
+        sendImage(blob, "cameraResult");
+      }, "image/jpeg");
+    }
+
+    function uploadImage() {
+      const fileInput = document.getElementById("uploadInput");
+      if (fileInput.files.length === 0) return alert("Выберите файл.");
+      const file = fileInput.files[0];
+      sendImage(file, "uploadResult");
+    }
+
+    function sendImage(blobOrFile, resultId) {
+      const formData = new FormData();
+      formData.append("image", blobOrFile);
+
+      fetch("/predict", {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          document.getElementById(resultId).innerHTML =
+            <p class="result">🐾 Эмоция: <strong>${data.label}</strong> (${(data.confidence * 100).toFixed(1)}%)</p>;
+        })
+        .catch((err) => {
+          document.getElementById(resultId).innerHTML = <p class="error">Ошибка: ${err}</p>;
+        });
+    }
+  </script>
+</body>
+</html>
