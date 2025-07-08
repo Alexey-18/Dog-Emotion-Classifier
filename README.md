@@ -58,4 +58,4 @@ Dog Emotion/
 -  Visualized: Elegant pastel charts show identical 25% distribution
 -  No Bias: All classes equal - ideal for training
 -  Quick Insights: Clean bar/pie charts with embedded counts
-![lada](misc/images/__results__6_0.png)
+![lada](misc/images/__results___6_0.png)
