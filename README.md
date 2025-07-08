@@ -52,3 +52,9 @@ Dog Emotion/
 - TensorFlow / PyTorch (укажите, что используете)  
 - OpenCV (для обработки изображений в реальном времени)  
 - Kaggle (для работы с датасетом)
+
+## 🔹 Визуализация набора данных
+🔹 Perfect Balance: 1,000 images per emotion (Happy , Angry , Sad , Relaxed )
+🔹 Visualized: Elegant pastel charts show identical 25% distribution
+🔹 No Bias: All classes equal - ideal for training
+🔹 Quick Insights: Clean bar/pie charts with embedded counts
