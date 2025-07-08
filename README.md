@@ -54,7 +54,8 @@ Dog Emotion/
 - Kaggle (для работы с датасетом)
 
 ## 🔹 Визуализация набора данных
-🔹 Perfect Balance: 1,000 images per emotion (Happy , Angry , Sad , Relaxed )
-🔹 Visualized: Elegant pastel charts show identical 25% distribution
-🔹 No Bias: All classes equal - ideal for training
-🔹 Quick Insights: Clean bar/pie charts with embedded counts
+-🔹 Perfect Balance: 1,000 images per emotion (Happy , Angry , Sad , Relaxed )
+-🔹 Visualized: Elegant pastel charts show identical 25% distribution
+-🔹 No Bias: All classes equal - ideal for training
+-🔹 Quick Insights: Clean bar/pie charts with embedded counts
+![lada](misc/images/__results__6_0.png)
